@@ -1,0 +1,46 @@
+//  Binary search - the input should be in ascending order
+
+import java.util.*;
+class Main {
+    public static int BinarySearch(int a[],int n, int key)
+    {
+        int high=n-1;
+        int low =0;
+        int mid=a[high];
+        while(low <=high)
+        {
+            mid= (low+high) /2;
+            if(a[mid] == key )
+            {
+                return mid;
+            }
+            else if( a[mid]<key )   //right
+            {
+                low = mid+1;
+            }
+            else                    // left
+            {
+                high = mid-1;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in) ;
+        int a [] = new int[20];
+        int n;
+        int key, res;
+        System.out.println("enter size ");
+        n = sc.nextInt();
+        
+        for(int i=0; i<n; i++)
+        {
+            System.out.println("Enter ");
+            a[i] = sc.nextInt();
+        }
+        System.out.println("Enter key ");
+        key = sc.nextInt();
+        res = BinarySearch( a,n,key );
+        System.out.println("Element found at index "+ res);
+    }
+}
