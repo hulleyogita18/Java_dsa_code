@@ -1,0 +1,35 @@
+// prefix aproach - max sub array
+class Main {
+    public static void subArrays(int number[])
+    {
+        int maxSum=Integer.MIN_VALUE;
+        int currSum=0;
+        int prefix[] = new int[number.length];
+        prefix[0] = number[0];
+        for(int i=1; i<prefix.length; i++)
+        {
+            prefix[i] = prefix[i-1] + number[i]; 
+        }
+        for(int i=0; i<number.length; i++)
+        {
+           
+            int start = i;
+            for(int j=i; j<number.length; j++)
+            {
+                int end = j;
+                currSum= start==0 ? prefix[end] : prefix[end]- prefix[start-1];
+                
+                if(maxSum < currSum)
+                {
+                    maxSum = currSum;
+                }
+            }
+            System.out.println(" ");
+        }
+        System.out.println("maximum sub arrys "+maxSum);    
+    }
+    public static void main(String[] args) {
+        int num[] ={10,20,30,5,2};
+        subArrays(num);
+    }
+}
